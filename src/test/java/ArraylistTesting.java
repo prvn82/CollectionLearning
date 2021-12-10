@@ -1,7 +1,7 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ArraylistTesting {
 
@@ -15,10 +15,41 @@ public class ArraylistTesting {
 
         System.out.println(studentList.get(3).getStudentRank());
 
-        Iterator<Student> it = studentList.iterator();
+        ListIterator<Student> it = studentList.listIterator();
         while (it.hasNext()){
-            System.out.println(it.next().getStudentName());
+            if(it.next().getStudentName().equals("Rohit")){
+                it.remove();
+            }
         }
+
+        System.out.println("after removal "+ studentList);
+
+        Object[] objects = studentList.toArray();
+
+        CopyOnWriteArrayList<Student> arr = new CopyOnWriteArrayList<>();
+
+
+        //remobving duplicate from Arraylis
+        List<Integer> list = new ArrayList<>(Arrays.asList(2,2,3,5,4,2,3,4,5,7,2,3,1,4,5));
+        Set<Integer> listnew = new LinkedHashSet<>();
+         for(int i : list){
+
+             listnew.add(i);
+
+         }
+
+        System.out.println(listnew);
+
+        List<Integer> newliust =list.stream().distinct().collect(Collectors.toList());
+
+        System.out.println(newliust);
+
+
+        //Compare two arrays:
+        List<String> Str1 = new ArrayList<>(Arrays.asList("praveen","Moh","Mohs"));
+        List<String> Str2 = new ArrayList<>(Arrays.asList("praveen","Moh","Mohss"));
+
+        System.out.println(Str1.retainAll(Str2));
 
 
 
